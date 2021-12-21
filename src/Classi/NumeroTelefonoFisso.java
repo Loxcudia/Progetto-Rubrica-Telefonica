@@ -1,11 +1,10 @@
 package Classi;
 
 public class NumeroTelefonoFisso extends NumeroTelefono  {
-	//attributi:
-	
-	
-	
 	//metodi:
+	public NumeroTelefonoFisso(String num) {
+		super(num);
+	}
 	public void dirottaChiamataDaFisso()
 	{
 		
