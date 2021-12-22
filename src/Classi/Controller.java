@@ -15,9 +15,6 @@ public class Controller {
 	{
 		return true;	
 	}
-	public static void main(String[] args) {
-		new Controller();
-
-	}
+	
 
 }
