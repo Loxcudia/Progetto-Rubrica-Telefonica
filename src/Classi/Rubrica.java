@@ -1,6 +1,7 @@
 package Classi;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class Rubrica {
 	//attributi:
@@ -39,10 +40,10 @@ public class Rubrica {
 		this.gruppi.add(g);
 		g.setR(this);
 	}
-	public Contatto creaContatto(String nome, String cognome, int età, char sesso, String residenza, String email, Rubrica r)
+	public void aggiungiContatto(String nome, String cognome, int età, char sesso, String residenza, String email, Rubrica r)
 	{
 		Contatto c = new Contatto(nome, cognome, età, sesso, residenza, email, this);
-		return c;
+		contatti.add(c);
 	}
 	public void eliminaContatto(Contatto c)
 	{
@@ -54,10 +55,10 @@ public class Rubrica {
 			}
 		}
 	}
-	public Gruppo creaGruppo(String nome, Rubrica r)
+	public void aggiungiGruppo(String nome, Rubrica r)
 	{
 		Gruppo g = new Gruppo(nome, this);
-		return g;
+		gruppi.add(g);
 	}
 	public void eliminaGruppo(Gruppo g)
 	{
@@ -107,4 +108,25 @@ public class Rubrica {
 					break;
 		}
 	}
+	
+	public void eliminaDuplicati()
+	{
+		//ArrayList<Contatto> contatti2 = (ArrayList<Contatto>) contatti.clone();
+		/*ArrayList<Contatto> contatti2 = new ArrayList<>(contatti);
+		for(int i=0; i < contatti.size(); i++)
+		{
+			for(int j=i+1; j < contatti2.size(); j++)
+			{
+				if(contatti.get(i) == contatti2.get(j))
+				{
+					contatti.remove(i);
+					contatti2.remove(j);
+				}
+			}
+		}*/
+		contatti = new ArrayList<>(new LinkedHashSet<Contatto>(contatti));
+	}
 }
+
+
+

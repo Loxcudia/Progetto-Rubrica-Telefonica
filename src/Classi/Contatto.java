@@ -100,5 +100,4 @@ public class Contatto {
 	public void setNumeritelefonici(NumeroTelefono nt) {
 		this.numeritelefonici.add(nt);
 	}
-
 }
