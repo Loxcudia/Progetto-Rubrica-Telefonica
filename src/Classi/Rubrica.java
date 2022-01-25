@@ -5,9 +5,9 @@ import java.util.LinkedHashSet;
 
 public class Rubrica {
 	//attributi:
-	private ArrayList <Contatto> contatti;
-	private ArrayList<Gruppo> gruppi;
-	private String nome;
+	public ArrayList <Contatto> contatti;
+	public ArrayList<Gruppo> gruppi;
+	public String nome;
 	
 	
 	//metodi:
