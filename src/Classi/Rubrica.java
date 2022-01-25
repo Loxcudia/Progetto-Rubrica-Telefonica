@@ -109,7 +109,7 @@ public class Rubrica {
 		}
 	}
 	
-	public void eliminaDuplicati()
+	/*public void eliminaDuplicati()
 	{
 		//ArrayList<Contatto> contatti2 = (ArrayList<Contatto>) contatti.clone();
 		/*ArrayList<Contatto> contatti2 = new ArrayList<>(contatti);
@@ -123,9 +123,9 @@ public class Rubrica {
 					contatti2.remove(j);
 				}
 			}
-		}*/
+		}
 		contatti = new ArrayList<>(new LinkedHashSet<Contatto>(contatti));
-	}
+	}*/
 }
 
 

@@ -1,6 +1,7 @@
 package Classi;
-
 import java.util.Scanner;
+
+import Controller.Controller;
 
 public class Main {
 
