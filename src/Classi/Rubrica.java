@@ -40,6 +40,15 @@ public class Rubrica {
 		this.gruppi.add(g);
 		g.setR(this);
 	}
+	
+	public void scambiaContatti(int i) 
+	{
+	Contatto tmp;
+		tmp = contatti.get(i);
+		contatti.set(i, contatti.get(i+1));
+		contatti.set(i+1, tmp);
+	}
+	
 	public void aggiungiContatto(String nome, String cognome, int età, char sesso, String residenza, String email, Rubrica r)
 	{
 		Contatto c = new Contatto(nome, cognome, età, sesso, residenza, email, this);
@@ -72,38 +81,41 @@ public class Rubrica {
 	}
 	public void mostraContattiPer(String scelta)
 	{
+		boolean scambio;
+		Contatto tmp = null;
 		switch(scelta)
 		{
 				case "cognome":
-					Contatto tmp = null;
 					if(contatti.size() > 1)
 					{
-						for(int x=0; x < contatti.size(); x++)
-						{
-							for(int i=0; i < contatti.size()-x-1; i++)
+						do {
+							scambio=false;
+							for(int i=0; i < contatti.size()-1; i++)
 							{
 								if(contatti.get(i).getCognome().compareTo(contatti.get(i+1).getCognome()) < 0)
-									tmp = contatti.get(i);
-									contatti.set(i, contatti.get(i+1));
-									contatti.set(i+1, tmp);
+								{
+									scambiaContatti(i); 
+									scambio=true;
+								}
 							}
-						}
+						} while (scambio);
 					}
 					break;
+					
 				case "nome":
-					Contatto tmp2 = null;
 					if(contatti.size() > 1)
 					{
-						for(int x=0; x < contatti.size(); x++)
-						{
-							for(int i=0; i < contatti.size()-x-1; i++)
+						do {
+							scambio=false;
+							for(int i=0; i < contatti.size()-1; i++)
 							{
 								if(contatti.get(i).getNome().compareTo(contatti.get(i+1).getNome()) < 0)
-									tmp = contatti.get(i);
-									contatti.set(i, contatti.get(i+1));
-									contatti.set(i+1, tmp2);
+								{	
+									scambiaContatti(i); 
+									scambio=true;
+								}
 							}
-						}
+						} while (scambio);
 					}
 					break;
 		}
