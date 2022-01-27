@@ -1,8 +1,11 @@
 package Controller;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
+import Classi.Contatto;
 import Classi.DBConnection;
 import Classi.Rubrica;
+import GUI.CreaC;
 import GUI.LoginFrame;
 import GUI.Menu;
 import GUI.SchermataContatti;
@@ -19,14 +22,12 @@ public class Controller {
 	Menu m;
 	SchermataContatti sc;
 	SchermataGruppi sg;
+	CreaC ci;
 	//metodi:
 	public Controller() {
+		r = new Rubrica("Rubrica");
 		i = new LoginFrame(this);
 		i.setVisible(true);
-	}
-	public void nuovaRubrica(String nome)
-	{
-		r = new Rubrica(nome);
 	}
 	public void tryLogin(String username, String num)
 	{
@@ -51,6 +52,27 @@ public class Controller {
 			sg = new SchermataGruppi(this);
 			m.setVisible(false);
 			sg.setVisible(true);
+		}
+	}
+	public void tryCreaC()
+	{
+		ci = new CreaC(this);
+		sc.setVisible(false);
+		ci.setVisible(true);
+	}
+	public void creaContatto(String nome, String cognome, int eta, String sesso, String residenza, String email, String numf, String numb)
+	{
+		r.aggiungiContatto(nome, cognome, eta, sesso.charAt(0), residenza, email, this.r, numf, numb);
+		ci.setVisible(false);
+		sc.setVisible(true);
+	}
+	public void riempiArrayList(ArrayList<Contatto> in)
+	{
+		if(r != null) {
+			for(int i=0; i < r.contatti.size(); i++)
+			{
+				in.add(r.contatti.get(i));
+			}
 		}
 	}
 	public static void main(String[] args) {

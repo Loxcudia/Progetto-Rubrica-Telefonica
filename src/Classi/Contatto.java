@@ -15,7 +15,8 @@ public class Contatto {
 	private ArrayList<Gruppo> gruppi;
 	private ArrayList<AccountMessaggistica> accountm;
 	private ArrayList <Chiamata> chiamate;
-	private ArrayList<NumeroTelefono> numeritelefonici;
+	private ArrayList<NumeroTelefonoFisso> numeritelefonicif;
+	private ArrayList<NumeroTelefonoMobile> numeritelefonicim;
 	//metodi:
 	public Contatto(String name, String surname, int age, char sex, String residence, String em, Rubrica r)
 	{
@@ -26,6 +27,8 @@ public class Contatto {
 		this.residenza= residence;
 		this.email= em;
 		this.rub= r;
+		numeritelefonicif = new ArrayList<NumeroTelefonoFisso>();
+		numeritelefonicim = new ArrayList<NumeroTelefonoMobile>();
 	}
 	public String getNome()
 	{
@@ -94,10 +97,16 @@ public class Contatto {
 		
 		
 	}
-	public NumeroTelefono getNumeritelefonici(int index) {
-		return numeritelefonici.get(index);
+	public NumeroTelefono getNumeritelefonicif(int index) {
+		return numeritelefonicif.get(index);
 	}
-	public void setNumeritelefonici(NumeroTelefono nt) {
-		this.numeritelefonici.add(nt);
+	public void setNumeritelefonicif(NumeroTelefonoFisso nt) {
+		this.numeritelefonicif.add(nt);
+	}
+	public NumeroTelefono getNumeritelefonicim(int index) {
+		return numeritelefonicim.get(index);
+	}
+	public void setNumeritelefonicifm(NumeroTelefonoMobile nt) {
+		this.numeritelefonicim.add(nt);
 	}
 }

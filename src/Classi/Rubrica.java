@@ -14,6 +14,8 @@ public class Rubrica {
 	public Rubrica(String n)
 	{
 		this.nome = n;
+		contatti = new ArrayList<Contatto>();
+		gruppi = new ArrayList<Gruppo>();
 	}
 	
 	public String getNome() {
@@ -40,10 +42,14 @@ public class Rubrica {
 		this.gruppi.add(g);
 		g.setR(this);
 	}
-	public void aggiungiContatto(String nome, String cognome, int età, char sesso, String residenza, String email, Rubrica r)
+	public void aggiungiContatto(String nome, String cognome, int età, char sesso, String residenza, String email, Rubrica r, String numf, String nummob)
 	{
+		NumeroTelefonoFisso n1 = new NumeroTelefonoFisso(numf);
+		NumeroTelefonoMobile n2 = new NumeroTelefonoMobile(nummob);
 		Contatto c = new Contatto(nome, cognome, età, sesso, residenza, email, this);
 		contatti.add(c);
+		contatti.get(contatti.size() - 1).setNumeritelefonicif(n1);
+		contatti.get(contatti.size() - 1).setNumeritelefonicifm(n2);
 	}
 	public void eliminaContatto(Contatto c)
 	{
@@ -70,43 +76,63 @@ public class Rubrica {
 			}
 		}
 	}
+	
+	public void scambiaContatti(int i) 
+	{
+		Contatto tmp;
+		tmp = contatti.get(i);
+		contatti.set(i, contatti.get(i+1));
+		contatti.set(i+1, tmp);
+	}
+
+	
 	public void mostraContattiPer(String scelta)
 	{
+		boolean scambio;
+		Contatto tmp = null;
 		switch(scelta)
 		{
-				case "cognome":
-					Contatto tmp = null;
+				case "Crescente":
 					if(contatti.size() > 1)
 					{
-						for(int x=0; x < contatti.size(); x++)
 						{
-							for(int i=0; i < contatti.size()-x-1; i++)
-							{
-								if(contatti.get(i).getCognome().compareTo(contatti.get(i+1).getCognome()) < 0)
-									tmp = contatti.get(i);
-									contatti.set(i, contatti.get(i+1));
-									contatti.set(i+1, tmp);
-							}
-						}
+						do {
+								scambio=false;
+								for(int i=0; i < contatti.size()-1; i++)
+								{
+									if(contatti.get(i).getCognome().compareTo(contatti.get(i+1).getCognome()) < 0)
+										tmp = contatti.get(i);
+										contatti.set(i, contatti.get(i+1));
+										contatti.set(i+1, tmp);
+									{
+										scambiaContatti(i); 
+										scambio=true;
+									}
+								}
+						} while (scambio);
 					}
-					break;
-				case "nome":
+					break; }
+
+				case "Decrescente":
 					Contatto tmp2 = null;
 					if(contatti.size() > 1)
 					{
-						for(int x=0; x < contatti.size(); x++)
-						{
-							for(int i=0; i < contatti.size()-x-1; i++)
+						do {
+							scambio=false;
+							for(int i=0; i < contatti.size()-1; i++)
 							{
-								if(contatti.get(i).getNome().compareTo(contatti.get(i+1).getNome()) < 0)
+								if(contatti.get(i).getNome().compareTo(contatti.get(i+1).getNome()) > 0)
 									tmp = contatti.get(i);
 									contatti.set(i, contatti.get(i+1));
 									contatti.set(i+1, tmp2);
+								{	
+									scambiaContatti(i); 
+									scambio=true;
+								}
 							}
-						}
+						} while (scambio);
 					}
-					break;
-		}
+					break;}
 	}
 	
 	/*public void eliminaDuplicati()
