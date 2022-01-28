@@ -33,6 +33,8 @@ public class SchermataContatti extends JFrame {
 	private JPanel contentPane;
 	Controller c;
 	private String nomeContatto = "";
+	DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
+	ArrayList<Contatto> contatti = new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
@@ -48,15 +50,17 @@ public class SchermataContatti extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.tryCreaC();
+				contattiModel.clear();
+				contattiModel.addAll(contatti);
 			}
 		});
 		btnNewButton.setVerticalAlignment(SwingConstants.TOP);
 		
 			 
 		 
-		ArrayList<Contatto> contatti = new ArrayList<>();
+		
 		JList<Contatto> list = new JList<>();
-		DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
+		
 
 		c.riempiArrayList(contatti);
 		contattiModel.addAll(contatti);
@@ -73,15 +77,15 @@ public class SchermataContatti extends JFrame {
 					.addComponent(btnNewButton))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(49)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(260, Short.MAX_VALUE))
+					.addComponent(list, GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+					.addGap(18))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(btnNewButton)
-					.addGap(66)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addGap(67)
+					.addComponent(list)
 					.addContainerGap(455, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);

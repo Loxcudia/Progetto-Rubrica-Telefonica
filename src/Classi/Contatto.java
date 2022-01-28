@@ -109,4 +109,10 @@ public class Contatto {
 	public void setNumeritelefonicifm(NumeroTelefonoMobile nt) {
 		this.numeritelefonicim.add(nt);
 	}
+	@Override
+	public String toString()
+	{
+		return nome + " " + cognome;
+	}
+	
 }

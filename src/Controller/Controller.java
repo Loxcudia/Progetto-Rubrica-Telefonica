@@ -64,6 +64,7 @@ public class Controller {
 	{
 		r.aggiungiContatto(nome, cognome, eta, sesso, residenza, email, this.r, numf, numb);
 		ci.setVisible(false);
+		sc = new SchermataContatti(this);
 		sc.setVisible(true);
 	}
 	public void riempiArrayList(ArrayList<Contatto> in)
