@@ -62,7 +62,7 @@ public class Controller {
 	}
 	public void creaContatto(String nome, String cognome, int eta, String sesso, String residenza, String email, String numf, String numb)
 	{
-		r.aggiungiContatto(nome, cognome, eta, sesso.charAt(0), residenza, email, this.r, numf, numb);
+		r.aggiungiContatto(nome, cognome, eta, sesso, residenza, email, this.r, numf, numb);
 		ci.setVisible(false);
 		sc.setVisible(true);
 	}

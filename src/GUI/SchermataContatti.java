@@ -32,7 +32,6 @@ public class SchermataContatti extends JFrame {
 
 	private JPanel contentPane;
 	Controller c;
-	private JTable table;
 	private String nomeContatto = "";
 	/**
 	 * Create the frame.
@@ -53,56 +52,37 @@ public class SchermataContatti extends JFrame {
 		});
 		btnNewButton.setVerticalAlignment(SwingConstants.TOP);
 		
-		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int riga= table.getSelectedRow();
-				nomeContatto = new String(table.getModel().getValueAt(riga, 0).toString());
-			}
-		});
-		table.setModel(new DefaultTableModel(
-				new Object[][] {
-					
-				},
-				new String[] {
-						"Contatto"
-				}
-		));
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		 ArrayList tabellaContatti = new ArrayList();
-		 c.riempiArrayList(tabellaContatti);
-		 if(tabellaContatti != null)
-		 {
-			 for(int i = 0; i < tabellaContatti.size(); i++)
-			 {
-				 model.addRow(new Object[] {tabellaContatti.get(i)});
-			 }
-			 contentPane.add(table);
 			 
-		 }
-		
+		 
+		ArrayList<Contatto> contatti = new ArrayList<>();
+		JList<Contatto> list = new JList<>();
+		DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
+
+		c.riempiArrayList(contatti);
+		contattiModel.addAll(contatti);
+		list.setModel(contattiModel);
+		contentPane.add(list, BorderLayout.NORTH);
 		
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap(251, Short.MAX_VALUE)
 					.addComponent(btnNewButton))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addGap(36)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(273, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(49)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(260, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(btnNewButton)
-					.addGap(58)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(463, Short.MAX_VALUE))
+					.addGap(66)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(455, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

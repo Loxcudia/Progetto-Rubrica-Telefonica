@@ -9,13 +9,14 @@ public class Rubrica {
 	public ArrayList<Gruppo> gruppi;
 	public String nome;
 	
-	
 	//metodi:
 	public Rubrica(String n)
 	{
 		this.nome = n;
+		Contatto t = new Contatto("Gianluca","Perna" , 20, "M", "Portici", "porfy", this);
 		contatti = new ArrayList<Contatto>();
 		gruppi = new ArrayList<Gruppo>();
+		contatti.add(t);
 	}
 	
 	public String getNome() {
@@ -42,7 +43,7 @@ public class Rubrica {
 		this.gruppi.add(g);
 		g.setR(this);
 	}
-	public void aggiungiContatto(String nome, String cognome, int età, char sesso, String residenza, String email, Rubrica r, String numf, String nummob)
+	public void aggiungiContatto(String nome, String cognome, int età, String sesso, String residenza, String email, Rubrica r, String numf, String nummob)
 	{
 		NumeroTelefonoFisso n1 = new NumeroTelefonoFisso(numf);
 		NumeroTelefonoMobile n2 = new NumeroTelefonoMobile(nummob);

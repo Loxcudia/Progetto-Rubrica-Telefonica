@@ -7,7 +7,7 @@ public class Contatto {
 	private String nome;
 	private String cognome;
 	private int età;
-	private char sesso;
+	private String sesso;
 	private String residenza;
 	private String email;
 	
@@ -18,7 +18,7 @@ public class Contatto {
 	private ArrayList<NumeroTelefonoFisso> numeritelefonicif;
 	private ArrayList<NumeroTelefonoMobile> numeritelefonicim;
 	//metodi:
-	public Contatto(String name, String surname, int age, char sex, String residence, String em, Rubrica r)
+	public Contatto(String name, String surname, int age, String sex, String residence, String em, Rubrica r)
 	{
 		this.nome= name;
 		this.cognome= surname;
@@ -50,10 +50,10 @@ public class Contatto {
 	public void setEtà(int e) {
 		this.età = e;
 	}
-	public char getSesso() {
+	public String getSesso() {
 		return this.sesso;
 	}
-	public void setSesso(char s) {
+	public void setSesso(String s) {
 		this.sesso = s;
 	}
 	public String getResidenza() {
