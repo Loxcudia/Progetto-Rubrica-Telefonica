@@ -1,6 +1,9 @@
 package Classi;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 
 public class Rubrica {
@@ -13,10 +16,12 @@ public class Rubrica {
 	public Rubrica(String n)
 	{
 		this.nome = n;
+		Contatto t2= new Contatto("Claudio", "Simonelli", 22, "M", "Torre del Greco", "porf", this);
 		Contatto t = new Contatto("Gianluca","Perna" , 20, "M", "Portici", "porfy", this);
 		contatti = new ArrayList<Contatto>();
 		gruppi = new ArrayList<Gruppo>();
 		contatti.add(t);
+		contatti.add(t2);
 	}
 	
 	public String getNome() {
@@ -54,11 +59,42 @@ public class Rubrica {
 	}
 	public void eliminaContatto(Contatto c)
 	{
-		for(int i=0; i < contatti.size(); i++)
+		for(int i=0; i < contatti.size() - 1; i++)
 		{
 			if(c == contatti.get(i))
 			{
 				contatti.remove(contatti.get(i));
+			}
+		}
+	}
+	public void modificaContatto(Contatto c, String scelta, String change)
+	{
+		for(int i=0; i < contatti.size() - 1; i++)
+		{
+			if(c == contatti.get(i))
+			{
+				switch(scelta)
+				{
+					case "Nome":
+						contatti.get(i).setNome(change);
+						break;
+					case "Cognome":
+						contatti.get(i).setCognome(change);
+						break;
+					case "Età":
+						int x= Integer.parseInt(change);
+						contatti.get(i).setEtà(x);
+						break;
+					case "Email":
+						contatti.get(i).setEmail(change);
+						break;
+					case "Residenza":
+						contatti.get(i).setResidenza(change);
+						break;
+					case "Sesso":
+						contatti.get(i).setSesso(change);
+						break;
+				}
 			}
 		}
 	}
@@ -77,14 +113,8 @@ public class Rubrica {
 			}
 		}
 	}
+
 	
-	public void scambiaContatti(int i) 
-	{
-		Contatto tmp;
-		tmp = contatti.get(i);
-		contatti.set(i, contatti.get(i+1));
-		contatti.set(i+1, tmp);
-	}
 
 	
 	public void mostraContattiPer(String scelta)
@@ -94,47 +124,59 @@ public class Rubrica {
 		switch(scelta)
 		{
 				case "Crescente":
-					if(contatti.size() > 1)
+					/*if(contatti.size() > 1)
 					{
-						{
+						
 						do {
 								scambio=false;
 								for(int i=0; i < contatti.size()-1; i++)
 								{
-									if(contatti.get(i).getCognome().compareTo(contatti.get(i+1).getCognome()) < 0)
+									if(contatti.get(i).getCognome().compareTo(contatti.get(i+1).getCognome()) < 0) {
 										tmp = contatti.get(i);
 										contatti.set(i, contatti.get(i+1));
 										contatti.set(i+1, tmp);
-									{
-										scambiaContatti(i); 
 										scambio=true;
 									}
 								}
 						} while (scambio);
-					}
-					break; }
+					
+					}*/
+					Collections.sort(contatti, new Comparator<Contatto>() {
+						   @Override
+						   public int compare(Contatto o1, Contatto o2) {
+						      return o1.getNome().compareTo(o2.getNome());
+						   }
+						});
+					break;
 
 				case "Decrescente":
-					Contatto tmp2 = null;
+					/*Contatto tmp2 = null;
 					if(contatti.size() > 1)
 					{
 						do {
 							scambio=false;
 							for(int i=0; i < contatti.size()-1; i++)
 							{
-								if(contatti.get(i).getNome().compareTo(contatti.get(i+1).getNome()) > 0)
+								if(contatti.get(i).getNome().compareTo(contatti.get(i+1).getNome()) > 0) {
 									tmp = contatti.get(i);
 									contatti.set(i, contatti.get(i+1));
 									contatti.set(i+1, tmp2);
-								{	
-									scambiaContatti(i); 
 									scambio=true;
 								}
 							}
 						} while (scambio);
+					}*/
+					Collections.sort(contatti, new Comparator<Contatto>() {
+						   @Override
+						   public int compare(Contatto o1, Contatto o2) {
+						      return o2.getNome().compareTo(o1.getNome());
+						   }
+						});
+					break; 
 					}
-					break;}
 	}
+	
+	
 	
 	/*public void eliminaDuplicati()
 	{
@@ -153,7 +195,7 @@ public class Rubrica {
 		}
 		contatti = new ArrayList<>(new LinkedHashSet<Contatto>(contatti));
 	}*/
+
+
+
 }
-
-
-

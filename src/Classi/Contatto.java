@@ -114,5 +114,8 @@ public class Contatto {
 	{
 		return nome + " " + cognome;
 	}
-	
+	public String getInfo()
+	{
+		return nome + ", " + cognome + ", " + email + ", " + età + ", " + sesso + ", " + residenza + ".";
+	}
 }

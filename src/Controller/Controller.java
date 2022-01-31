@@ -8,6 +8,7 @@ import Classi.Rubrica;
 import GUI.CreaC;
 import GUI.LoginFrame;
 import GUI.Menu;
+import GUI.ModificaContatto;
 import GUI.SchermataContatti;
 import GUI.SchermataGruppi;
 public class Controller {
@@ -23,6 +24,7 @@ public class Controller {
 	SchermataContatti sc;
 	SchermataGruppi sg;
 	CreaC ci;
+	ModificaContatto mc;
 	//metodi:
 	public Controller() {
 		r = new Rubrica("Rubrica");
@@ -43,6 +45,14 @@ public class Controller {
 		cre = y;
 		if(con == true)
 		{
+			if(cre == true)
+			{
+				r.mostraContattiPer("Crescente");
+			}
+			else
+			{
+				r.mostraContattiPer("Decrescente");
+			}
 			sc = new SchermataContatti(this);
 			m.setVisible(false);
 			sc.setVisible(true);
@@ -75,6 +85,18 @@ public class Controller {
 				in.add(r.contatti.get(i));
 			}
 		}
+	}
+	public void tryModificaContatto(Contatto co)
+	{
+		sc.setVisible(false);
+		mc = new ModificaContatto(this, co, this.r);
+		mc.setVisible(true);
+	}
+	public void tryModificaContatto2()
+	{
+		mc.setVisible(false);
+		sc= new SchermataContatti(this);
+		sc.setVisible(true);
 	}
 	public static void main(String[] args) {
 		new Controller();
