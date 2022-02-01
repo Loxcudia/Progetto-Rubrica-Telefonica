@@ -36,7 +36,7 @@ public class ModificaContatto extends JFrame {
 	public ModificaContatto(GestioneVisibilitaGUI in, Contatto co, Rubrica r) {
 		c = in;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 412);
+		setBounds(100, 100, 470, 420);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -109,6 +109,13 @@ public class ModificaContatto extends JFrame {
 				c.tryModificaContatto2();
 			}
 		});
+		
+		JButton btnNewButton_3 = new JButton("Annulla");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryIndietroModificaContatto();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -119,37 +126,32 @@ public class ModificaContatto extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-											.addComponent(lblNewLabel_1)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(textField, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-											.addComponent(lblNewLabel_2)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-											.addComponent(lblNewLabel_5)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-											.addComponent(lblNewLabel_4)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
-										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-											.addComponent(lblNewLabel_3)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-											.addComponent(lblNewLabel_6)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))))
+							.addContainerGap()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_1)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(textField, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_2)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_5)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_4)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_3)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_6)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
 							.addGap(43))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(21)
@@ -158,9 +160,11 @@ public class ModificaContatto extends JFrame {
 					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(1))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(184)
+					.addGap(162)
 					.addComponent(btnNewButton_2)
-					.addContainerGap(193, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(116))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -196,7 +200,9 @@ public class ModificaContatto extends JFrame {
 						.addComponent(btnNewButton_1)
 						.addComponent(btnNewButton))
 					.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-					.addComponent(btnNewButton_2))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_2)
+						.addComponent(btnNewButton_3)))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

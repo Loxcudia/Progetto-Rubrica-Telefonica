@@ -20,6 +20,7 @@ public class GestioneVisibilitaGUI {
 	SchermataGruppi sg;
 	CreaC ci;
 	ModificaContatto mc;
+	VisualizzaContattoNumeri vcm;
 	//metodi:
 	public GestioneVisibilitaGUI(LoginFrame in, Controller cin) {
 		i = in;
@@ -80,6 +81,42 @@ public class GestioneVisibilitaGUI {
 	public void tryModificaContatto2()
 	{
 		mc.setVisible(false);
+		sc= new SchermataContatti(this, this.c);
+		sc.setVisible(true);
+	}
+	public void tryVisualizzaNumeri(Contatto in)
+	{
+		sc.setVisible(false);
+		vcm = new VisualizzaContattoNumeri(this.c, this, in);
+		vcm.setVisible(true);
+	}
+	public void tryIndietroMenu()
+	{
+		m.setVisible(false);
+		i = new LoginFrame(this.c);
+		i.setVisible(true);
+	}
+	public void tryIndietroSchermataContatti()
+	{
+		sc.setVisible(false);
+		m = new Menu(this);
+		m.setVisible(true);
+	}
+	public void tryIndietroCreaC()
+	{
+		ci.setVisible(false);
+		sc= new SchermataContatti(this, this.c);
+		sc.setVisible(true);
+	}
+	public void tryIndietroModificaContatto()
+	{
+		mc.setVisible(false);
+		sc = new SchermataContatti(this, this.c);
+		sc.setVisible(true);
+	}
+	public void tryIndietroVisualizzaContattoNumeri()
+	{
+		vcm.setVisible(false);
 		sc= new SchermataContatti(this, this.c);
 		sc.setVisible(true);
 	}

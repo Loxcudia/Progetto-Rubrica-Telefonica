@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class NumeroTelefono {
 	//attributi:
 	public String numero;
-	public ArrayList<Contatto> contatti;
+	public ArrayList<Contatto> contatti = new ArrayList<>();
 	//metodi:
 	public NumeroTelefono(String num)
 	{
@@ -22,5 +22,10 @@ public class NumeroTelefono {
 	}
 	public void setContatti(Contatto c) {
 		this.contatti.add(c);
+	}
+	@Override
+	public String toString()
+	{
+		return numero;
 	}
 }

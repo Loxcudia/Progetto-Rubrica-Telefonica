@@ -29,6 +29,7 @@ public class Contatto {
 		this.rub= r;
 		numeritelefonicif = new ArrayList<NumeroTelefonoFisso>();
 		numeritelefonicim = new ArrayList<NumeroTelefonoMobile>();
+		
 	}
 	public String getNome()
 	{
@@ -97,17 +98,18 @@ public class Contatto {
 		
 		
 	}
-	public NumeroTelefono getNumeritelefonicif(int index) {
-		return numeritelefonicif.get(index);
+	public ArrayList<NumeroTelefonoFisso> getNumeritelefonicif() {
+		return numeritelefonicif;
 	}
 	public void setNumeritelefonicif(NumeroTelefonoFisso nt) {
 		this.numeritelefonicif.add(nt);
 	}
-	public NumeroTelefono getNumeritelefonicim(int index) {
-		return numeritelefonicim.get(index);
+	public ArrayList<NumeroTelefonoMobile> getNumeritelefonicim() {
+		return numeritelefonicim;
 	}
 	public void setNumeritelefonicifm(NumeroTelefonoMobile nt) {
 		this.numeritelefonicim.add(nt);
+		nt.setContatti(this);
 	}
 	@Override
 	public String toString()

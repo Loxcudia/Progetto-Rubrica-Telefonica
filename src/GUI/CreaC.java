@@ -38,7 +38,7 @@ public class CreaC extends JFrame {
 		c = in;
 		con = cin;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 528, 380);
+		setBounds(100, 100, 568, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -92,21 +92,30 @@ public class CreaC extends JFrame {
 				c.creaContatto();
 			}
 		});
+		
+		JButton btnNewButton_1 = new JButton("Aggiungi Account Messaggistica");
+		
+		JButton btnNewButton_2 = new JButton("Aggiungi Numeri Secondari");
+		
+		JButton btnNewButton_3 = new JButton("Annulla");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryIndietroCreaC();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(83)
-							.addComponent(lblNewLabel))
+						.addComponent(lblNewLabel, Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(35)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblNewLabel_2)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblNewLabel_1)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -118,11 +127,7 @@ public class CreaC extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 									.addGap(38)
-									.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblNewLabel_8)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_6, 138, 138, 138))
+									.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblNewLabel_5)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -134,12 +139,26 @@ public class CreaC extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblNewLabel_7)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))))
-					.addGap(258))
+									.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_8)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textField_6, 138, 138, 138)))))
+					.addGap(226))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(146)
-					.addComponent(btnNewButton)
-					.addContainerGap(267, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(200)
+							.addComponent(btnNewButton)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+							.addGap(93))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+							.addGap(210))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -178,9 +197,14 @@ public class CreaC extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_8)
 						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(btnNewButton)
-					.addContainerGap(30, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_1)
+						.addComponent(btnNewButton_2))
+					.addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(btnNewButton_3)))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

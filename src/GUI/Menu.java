@@ -63,6 +63,13 @@ public class Menu extends JFrame {
 			c.contattiOrGruppi(contatti, cresc);
 			}
 		});
+		
+		JButton btnNewButton_1 = new JButton("Indietro");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryIndietroMenu();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -81,12 +88,16 @@ public class Menu extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton)
 						.addComponent(lblNewLabel_2))
-					.addContainerGap(144, Short.MAX_VALUE))
+					.addContainerGap(150, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 53, Short.MAX_VALUE)
+					.addGap(280))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(27)
+					.addComponent(btnNewButton_1)
+					.addGap(4)
 					.addComponent(lblNewLabel_2)
 					.addGap(37)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)

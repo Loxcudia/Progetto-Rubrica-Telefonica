@@ -69,7 +69,7 @@ public class LoginFrame extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(149)
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
 							.addGap(15))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
@@ -85,7 +85,7 @@ public class LoginFrame extends JFrame {
 					.addGap(171))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(150)
-					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(218))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -102,7 +102,7 @@ public class LoginFrame extends JFrame {
 						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
 					.addGap(66)
 					.addComponent(btnNewButton)
-					.addContainerGap(77, Short.MAX_VALUE))
+					.addContainerGap(93, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

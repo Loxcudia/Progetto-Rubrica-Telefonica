@@ -5,6 +5,8 @@ import Classi.Rubrica;
 import java.util.ArrayList;
 
 import Classi.Contatto;
+import Classi.NumeroTelefonoFisso;
+import Classi.NumeroTelefonoMobile;
 public class Controller {
 	
 	Rubrica r;
@@ -39,5 +41,13 @@ public class Controller {
 	{
 		r.mostraContattiPer("Crescente");
 		return r;
+	}
+	public ArrayList<NumeroTelefonoFisso> getContattiNumeriTelefonoFissi(Contatto in)
+	{
+		return in.getNumeritelefonicif();
+	}
+	public ArrayList<NumeroTelefonoMobile> getContattiNumeriTelefonoMobili(Contatto in)
+	{
+		return in.getNumeritelefonicim();
 	}
 }
