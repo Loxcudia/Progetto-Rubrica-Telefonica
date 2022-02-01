@@ -23,14 +23,20 @@ public class LoginFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private Controller c;
-
+	private GestioneVisibilitaGUI c;
+	Controller con;
 	
 
 	/**
 	 * Create the frame.
 	 */
-	public LoginFrame(Controller in) {
+	public LoginFrame(Controller in)
+	{
+		con = in;
+		c = new GestioneVisibilitaGUI(this, con);
+		initialize(c);
+	}
+	public void initialize(GestioneVisibilitaGUI in) {
 		c = in;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

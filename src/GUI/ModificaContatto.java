@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 import Classi.Contatto;
 import Classi.Rubrica;
-import Controller.Controller;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -29,12 +28,12 @@ public class ModificaContatto extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	Controller c;
+	GestioneVisibilitaGUI c;
 
 	/**
 	 * Create the frame.
 	 */
-	public ModificaContatto(Controller in, Contatto co, Rubrica r) {
+	public ModificaContatto(GestioneVisibilitaGUI in, Contatto co, Rubrica r) {
 		c = in;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 412);

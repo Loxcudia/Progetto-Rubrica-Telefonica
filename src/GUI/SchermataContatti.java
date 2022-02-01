@@ -9,8 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Classi.Rubrica;
-import Classi.Contatto;
 import Controller.Controller;
+import Classi.Contatto;
+
 import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -33,15 +34,17 @@ import javax.swing.JLabel;
 public class SchermataContatti extends JFrame {
 
 	private JPanel contentPane;
-	Controller c;
+	GestioneVisibilitaGUI c;
+	Controller con;
 	private String nomeContatto = "";
 	DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
 	ArrayList<Contatto> contatti = new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
-	public SchermataContatti(Controller in) {
+	public SchermataContatti(GestioneVisibilitaGUI in, Controller cin) {
 		c = in;
+		con = cin;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 423, 598);
 		contentPane = new JPanel();
@@ -64,7 +67,7 @@ public class SchermataContatti extends JFrame {
 		JList<Contatto> list = new JList<>();
 		
 
-		c.riempiArrayList(contatti);
+		contatti = con.getRubricaContatti();
 		contattiModel.addAll(contatti);
 		list.setModel(contattiModel);
 		contentPane.add(list, BorderLayout.NORTH);

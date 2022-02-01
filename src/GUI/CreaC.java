@@ -29,13 +29,14 @@ public class CreaC extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	Controller c;
-
+	GestioneVisibilitaGUI c;
+	Controller con;
 	/**
 	 * Create the frame.
 	 */
-	public CreaC(Controller in) {
+	public CreaC(GestioneVisibilitaGUI in, Controller cin) {
 		c = in;
+		con = cin;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 528, 380);
 		contentPane = new JPanel();
@@ -87,7 +88,8 @@ public class CreaC extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int x = Integer.parseInt(textField_2.getText());
-				c.creaContatto(textField.getText(), textField_1.getText(), x, comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
+				con.addContatto(textField.getText(), textField_1.getText(), x, comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
+				c.creaContatto();
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

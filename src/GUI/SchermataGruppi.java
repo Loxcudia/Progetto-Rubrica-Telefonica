@@ -7,18 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controller.Controller;
-
 public class SchermataGruppi extends JFrame {
 
 	private JPanel contentPane;
-	Controller c;
+	GestioneVisibilitaGUI c;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public SchermataGruppi(Controller in) {
+	public SchermataGruppi(GestioneVisibilitaGUI in) {
 		c = in;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

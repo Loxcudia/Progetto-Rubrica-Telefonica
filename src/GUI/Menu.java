@@ -6,8 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Controller.Controller;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
@@ -20,13 +18,13 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame {
 
 	private JPanel contentPane;
-	private Controller c;
+	private GestioneVisibilitaGUI c;
 	public boolean cresc, contatti;
 
 	/**
 	 * Create the frame.
 	 */
-	public Menu(Controller in) {
+	public Menu(GestioneVisibilitaGUI in) {
 		c = in;
 		String nick = c.getNickname();
 		String msg = "Ciao " + nick + "!";
