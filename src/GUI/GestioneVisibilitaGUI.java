@@ -12,6 +12,8 @@ public class GestioneVisibilitaGUI {
 	Rubrica r;
 	String nickname;
 	String numero;
+	String nome, numeroF,numeroC; 
+	ArrayList<String> numeriSecondari = new ArrayList<>();
 	boolean con;
 	boolean cre;
 	LoginFrame i;
@@ -21,6 +23,7 @@ public class GestioneVisibilitaGUI {
 	CreaC ci;
 	ModificaContatto mc;
 	VisualizzaContattoNumeri vcm;
+	AggiungiNumeriSecondari ans;
 	//metodi:
 	public GestioneVisibilitaGUI(LoginFrame in, Controller cin) {
 		i = in;
@@ -29,12 +32,15 @@ public class GestioneVisibilitaGUI {
 	}
 	public void tryLogin(String username, String num)
 	{
+		
 		nickname = username;
 		numero = num;
+		if(!((nickname.isEmpty()) || (numero.isBlank())))
+		{
 		m = new Menu(this);
 		i.setVisible(false);
 		m.setVisible(true);
-	}
+	}}
 	public void contattiOrGruppi(boolean x, boolean y)
 	{
 		con = x;
@@ -66,11 +72,14 @@ public class GestioneVisibilitaGUI {
 		sc.setVisible(false);
 		ci.setVisible(true);
 	}
-	public void creaContatto()
+	public void creaContatto(String nome, String cognome, String numf, String numc)
 	{
-		ci.setVisible(false);
-		sc = new SchermataContatti(this, this.c);
-		sc.setVisible(true);
+		if ((((!nome.isBlank())||(!cognome.isBlank()))&&(!numf.isBlank())&&(!numc.isBlank())))
+		{
+			ci.setVisible(false);
+			sc = new SchermataContatti(this, this.c);
+			sc.setVisible(true);
+		}
 	}
 	public void tryModificaContatto(Contatto co)
 	{
@@ -120,6 +129,18 @@ public class GestioneVisibilitaGUI {
 		sc= new SchermataContatti(this, this.c);
 		sc.setVisible(true);
 	}
+	public void tryAggiungiNumeriSecondari()
+	{
+		ci.setVisible(false);
+		ans = new AggiungiNumeriSecondari(this, this.c);
+		ans.setVisible(true);
+	}
+	public void AggiuntaNumeroSecondario(String in, String in2)
+	{
+		ans.setVisible(false);
+		numeriSecondari.add(in + in2);
+		ci.setVisible(true);
+	}
 	public String getNickname() {
 		return nickname;
 	}
@@ -138,6 +159,12 @@ public class GestioneVisibilitaGUI {
 	}
 	public Menu getM() {
 		return m;
+	}
+	public ArrayList<String> getNumeriSecondari() {
+		return numeriSecondari;
+	}
+	public void setNumeriSecondari(ArrayList<String> numeriSecondari) {
+		this.numeriSecondari = numeriSecondari;
 	}
 	
 }

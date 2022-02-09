@@ -17,6 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class CreaC extends JFrame {
@@ -87,15 +88,22 @@ public class CreaC extends JFrame {
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> ns = new ArrayList<>();
+				ns = c.getNumeriSecondari();
 				int x = Integer.parseInt(textField_2.getText());
-				con.addContatto(textField.getText(), textField_1.getText(), x, comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
-				c.creaContatto();
+				con.addContatto(textField.getText(), textField_1.getText(), x, comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), ns);
+				c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());
 			}
 		});
 		
 		JButton btnNewButton_1 = new JButton("Aggiungi Account Messaggistica");
 		
 		JButton btnNewButton_2 = new JButton("Aggiungi Numeri Secondari");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryAggiungiNumeriSecondari();
+			}
+		});
 		
 		JButton btnNewButton_3 = new JButton("Annulla");
 		btnNewButton_3.addActionListener(new ActionListener() {
