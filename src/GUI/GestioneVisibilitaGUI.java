@@ -4,26 +4,30 @@ import java.util.ArrayList;
 
 import Classi.Contatto;
 import Classi.DBConnection;
+import Classi.NumeroTelefonoFisso;
+import Classi.NumeroTelefonoMobile;
 import Classi.Rubrica;
 import Controller.Controller;
 public class GestioneVisibilitaGUI {
 	//attributi:
-	Controller c;
-	Rubrica r;
-	String nickname;
-	String numero;
-	String nome, numeroF,numeroC; 
-	ArrayList<String> numeriSecondari = new ArrayList<>();
-	boolean con;
-	boolean cre;
-	LoginFrame i;
-	Menu m;
-	SchermataContatti sc;
-	SchermataGruppi sg;
-	CreaC ci;
-	ModificaContatto mc;
-	VisualizzaContattoNumeri vcm;
-	AggiungiNumeriSecondari ans;
+	private Controller c;
+	private Rubrica r;
+	private String nickname;
+	private String numero;
+	private String nome, numeroF,numeroC; 
+	private ArrayList<String> numeriSecondari = new ArrayList<>();
+	private boolean con;
+	private boolean cre;
+	private LoginFrame i;
+	private Menu m;
+	private SchermataContatti sc;
+	private SchermataGruppi sg;
+	private CreaC ci;
+	private ModificaContatto mc;
+	private VisualizzaContattoNumeri vcm;
+	private AggiungiNumeriSecondari ans;
+	private ModificaNumeroTelefono mnf;
+	private AggiungiNumeroTelefono anf;
 	//metodi:
 	public GestioneVisibilitaGUI(LoginFrame in, Controller cin) {
 		i = in;
@@ -140,6 +144,31 @@ public class GestioneVisibilitaGUI {
 		ans.setVisible(false);
 		numeriSecondari.add(in + in2);
 		ci.setVisible(true);
+	}
+	
+	public void tryModificaNumeroFisso(NumeroTelefonoFisso in, Contatto conin)
+	{
+		vcm.setVisible(false);
+		mnf = new ModificaNumeroTelefono (this, this.c, in, null, conin);
+		mnf.setVisible(true);
+	}
+	public void tryIndietroModificaNumeroFisso(Contatto conin)
+	{
+		mnf.setVisible(false);
+		vcm = new VisualizzaContattoNumeri(this.c, this, conin);
+		vcm.setVisible(true);
+	}
+	public void tryAggiungiNumeroTelefonoFisso(Contatto conin, String scelta)
+	{
+		vcm.setVisible(false);
+		anf = new AggiungiNumeroTelefono(this, this.c, scelta, conin);
+		anf.setVisible(true);
+	}
+	public void tryIndietroAggiungiNumeroTelefono(Contatto conin)
+	{
+		anf.setVisible(true);
+		vcm = new VisualizzaContattoNumeri(this.c, this, conin);
+		vcm.setVisible(true);
 	}
 	public String getNickname() {
 		return nickname;

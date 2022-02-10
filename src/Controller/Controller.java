@@ -102,4 +102,22 @@ public class Controller {
 	{
 		return in.getNumeritelefonicim();
 	}
+	
+	public void addNumeroContatto(Contatto coin, NumeroTelefonoFisso ntfin, NumeroTelefonoMobile nmtin)
+	{
+		for(int i = 0; i < r.contatti.size(); i++)
+		{
+			if(r.contatti.get(i) == coin)
+			{
+				if(ntfin == null)
+				{
+					r.contatti.get(i).setNumeritelefonicifm(nmtin);
+				}
+				else if(nmtin == null)
+				{
+					r.contatti.get(i).setNumeritelefonicif(ntfin);
+				}
+			}
+		}
+	}
 }
