@@ -14,6 +14,7 @@ import Controller.Controller;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -23,8 +24,8 @@ import java.awt.event.ActionEvent;
 public class AggiungiNumeroTelefono extends JFrame {
 
 	private JPanel contentPane;
-	Controller con;
-	GestioneVisibilitaGUI c;
+	private Controller con;
+	private GestioneVisibilitaGUI c;
 	private JTextField textField;
 	
 	/**
@@ -50,12 +51,20 @@ public class AggiungiNumeroTelefono extends JFrame {
 				if(scelta == "M")
 				{
 					NumeroTelefonoMobile n = new NumeroTelefonoMobile(textField.getText());
-					con.addNumeroContatto(coin, null, n);
+					boolean x = con.addNumeroContatto(coin, null, n);
+					if(x == false)
+					{
+						JOptionPane.showMessageDialog(null, "Caratteri non validi");
+					}
 				}
 				else if(scelta == "F")
 				{
 					NumeroTelefonoFisso n = new NumeroTelefonoFisso(textField.getText());
-					con.addNumeroContatto(coin, n, null);
+					boolean x = con.addNumeroContatto(coin, n, null);
+					if(x == false)
+					{
+						JOptionPane.showMessageDialog(null, "Caratteri non validi per un numero telefonico");
+					}
 				}
 				c.tryIndietroAggiungiNumeroTelefono(coin);
 			}

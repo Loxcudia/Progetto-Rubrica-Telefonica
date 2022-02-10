@@ -101,7 +101,7 @@ public class Rubrica {
 	 * @param numf: il numero di telefono fisso 
 	 * @param nummob: il numero di telefono mobile
 	 */
-	public void aggiungiContatto(String nome, String cognome, int età, String sesso, String residenza, String email, Rubrica r, String numf, String nummob, ArrayList<String> ns)
+	public void aggiungiContatto(String nome, String cognome, int età, String sesso, String residenza, String email, Rubrica r, String numf, String nummob, ArrayList<String> ns, ArrayList<AccountMessaggistica> am)
 	{
 		NumeroTelefonoFisso n1 = new NumeroTelefonoFisso(numf);
 		NumeroTelefonoMobile n2 = new NumeroTelefonoMobile(nummob);
@@ -111,12 +111,10 @@ public class Rubrica {
 		contatti.get(contatti.size() - 1).setNumeritelefonicifm(n2);
 		for(int i = 0; i < ns.size(); i++)
 		{
-			System.out.println(ns.get(i));
 			if(ns.get(i).charAt(0) == 'F')
 			{
 				String x = ns.get(i);
 				x = x.replace("F", "");
-				System.out.println(x);
 				NumeroTelefonoFisso nf = new NumeroTelefonoFisso(x);
 				contatti.get(contatti.size() - 1).setNumeritelefonicif(nf);
 			}
@@ -124,10 +122,13 @@ public class Rubrica {
 			{
 				String x = ns.get(i);
 				x = x.replace("M", "");
-				System.out.println(x);
 				NumeroTelefonoMobile nm = new NumeroTelefonoMobile(x);
 				contatti.get(contatti.size() - 1).setNumeritelefonicifm(nm);
 			}
+		}
+		for(int i = 0; i < am.size(); i++)
+		{
+			contatti.get(contatti.size() - 1).setAccountm(am.get(i));
 		}
 	}
 	

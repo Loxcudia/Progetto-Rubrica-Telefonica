@@ -24,8 +24,8 @@ import java.awt.event.ActionEvent;
 public class ModificaNumeroTelefono extends JFrame {
 
 	private JPanel contentPane;
-	Controller con;
-	GestioneVisibilitaGUI c;
+	private Controller con;
+	private GestioneVisibilitaGUI c;
 	private JTextField textField;
 
 	/**
@@ -44,7 +44,7 @@ public class ModificaNumeroTelefono extends JFrame {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		String[] x = {"F", "M"};
+		
 		
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -55,7 +55,7 @@ public class ModificaNumeroTelefono extends JFrame {
 					{
 						nfin.setNumero(textField.getText());
 					}
-					c.tryIndietroModificaNumeroFisso(coin);
+					c.tryIndietroModificaNumero(coin);
 				}
 				else if(nfin == null)
 				{
@@ -63,7 +63,7 @@ public class ModificaNumeroTelefono extends JFrame {
 					{
 						nmin.setNumero(textField.getText());
 					}
-					c.tryIndietroModificaNumeroFisso(coin);
+					c.tryIndietroModificaNumero(coin);
 				}
 			}
 		});

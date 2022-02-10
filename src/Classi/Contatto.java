@@ -65,7 +65,10 @@ public class Contatto {
 		this.email= em;
 		this.rub= r;
 		numeritelefonicif = new ArrayList<NumeroTelefonoFisso>();
-		numeritelefonicim = new ArrayList<NumeroTelefonoMobile>();		
+		numeritelefonicim = new ArrayList<NumeroTelefonoMobile>();	
+		accountm = new ArrayList<AccountMessaggistica>();
+		gruppi = new ArrayList<Gruppo>();
+		chiamate = new ArrayList<Chiamata>();
 	}
 	
 	/**
@@ -213,8 +216,8 @@ public class Contatto {
 	 * Gets and Sets dell' array che contiene gli account di messaggistica del contatto.
 	 * @return Array di account
 	 */
-	public AccountMessaggistica getAccountm(int index) {
-		return accountm.get(index);
+	public ArrayList<AccountMessaggistica> getAccountm() {
+		return this.accountm;
 	}
 	
 	/**

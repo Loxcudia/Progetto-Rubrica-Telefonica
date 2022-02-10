@@ -7,6 +7,7 @@ import Classi.Rubrica;
 
 import java.util.ArrayList;
 
+import Classi.AccountMessaggistica;
 import Classi.Contatto;
 import Classi.NumeroTelefonoFisso;
 import Classi.NumeroTelefonoMobile;
@@ -39,7 +40,7 @@ public class Controller {
 	 * @param numf : numero fisso del contatto aggiunto
 	 * @param numb : numero mobile del contatto aggiunto
 	 */
-	public void addContatto(String nome, String cognome, int eta, String sesso, String residenza, String email, String numf, String numb, ArrayList<String> numeriS)
+	public void addContatto(String nome, String cognome, int eta, String sesso, String residenza, String email, String numf, String numb, ArrayList<String> numeriS, ArrayList<AccountMessaggistica> am)
 	{
 		/**
 		 *@if questo controllo serve a non far aggiungere alla rubrica gli utenti ai quali non è stato inserito 
@@ -48,7 +49,7 @@ public class Controller {
 		 */
 		if ((((!nome.isBlank())||(!cognome.isBlank()))&&(!numf.isBlank())&&(!numb.isBlank())))
 		{
-			r.aggiungiContatto(nome, cognome, eta, sesso, residenza, email, this.r, numf, numb, numeriS);
+			r.aggiungiContatto(nome, cognome, eta, sesso, residenza, email, this.r, numf, numb, numeriS, am);
 		}
 	}
 	
@@ -56,7 +57,10 @@ public class Controller {
 	{
 		return r.contatti;
 	}
-	
+	public ArrayList<AccountMessaggistica> getContattoAccountMessaggistica(Contatto in)
+	{
+		return in.getAccountm();
+	}
 	/**
 	 * Metodo che chiama la funzione "getRubricaOrdinataDesc" 
 	 * che ordinerà l'array di contatti in ordine alfabetico decrescente.
@@ -103,7 +107,7 @@ public class Controller {
 		return in.getNumeritelefonicim();
 	}
 	
-	public void addNumeroContatto(Contatto coin, NumeroTelefonoFisso ntfin, NumeroTelefonoMobile nmtin)
+	public boolean addNumeroContatto(Contatto coin, NumeroTelefonoFisso ntfin, NumeroTelefonoMobile nmtin)
 	{
 		for(int i = 0; i < r.contatti.size(); i++)
 		{
@@ -111,13 +115,48 @@ public class Controller {
 			{
 				if(ntfin == null)
 				{
-					r.contatti.get(i).setNumeritelefonicifm(nmtin);
+					if(isNumeric(nmtin.getNumero()) == true)
+					{
+						r.contatti.get(i).setNumeritelefonicifm(nmtin);
+						return true;
+					}
+					else
+					{
+						return false;
+					}
 				}
 				else if(nmtin == null)
 				{
-					r.contatti.get(i).setNumeritelefonicif(ntfin);
+					if(isNumeric(ntfin.getNumero()) == true)
+					{
+						r.contatti.get(i).setNumeritelefonicif(ntfin);
+						return true;
+					}
+					else
+					{
+						return false;
+					}
 				}
 			}
 		}
+		return true;
 	}
+	public void addAccountMessaggisticaContatto(Contatto cin, AccountMessaggistica amin)
+	{
+		for(int i = 0; i < r.contatti.size(); i++)
+		{
+			if(r.contatti.get(i) == cin)
+			{
+				r.contatti.get(i).setAccountm(amin);
+			}
+		}
+	}
+	public static boolean isNumeric(String str) { 
+		  try {  
+		    Double.parseDouble(str);  
+		    return true;
+		  } catch(NumberFormatException e){  
+		    return false;  
+		  }  
+		}
 }

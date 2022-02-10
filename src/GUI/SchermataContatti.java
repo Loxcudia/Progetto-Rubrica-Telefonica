@@ -35,11 +35,11 @@ import java.awt.Color;
 public class SchermataContatti extends JFrame {
 
 	private JPanel contentPane;
-	GestioneVisibilitaGUI c;
-	Controller con;
+	private GestioneVisibilitaGUI c;
+	private Controller con;
 	private String nomeContatto = "";
-	DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
-	ArrayList<Contatto> contatti = new ArrayList<>();
+	private DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
+	private ArrayList<Contatto> contatti = new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
@@ -107,11 +107,16 @@ public class SchermataContatti extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Contatto co = contatti.get(list.getSelectedIndex());
 				c.tryVisualizzaNumeri(co);
-				
 			}
 		});
 		
 		JButton btnNewButton_6 = new JButton("Visualizza Account Messaggistica");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Contatto co = contatti.get(list.getSelectedIndex());
+				c.tryVisualizzaContattoAccountMessaggistica(co);
+			}
+		});
 		
 		JButton btnNewButton_4 = new JButton("Indietro");
 		btnNewButton_4.addActionListener(new ActionListener() {

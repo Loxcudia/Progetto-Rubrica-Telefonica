@@ -17,6 +17,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,12 +28,12 @@ import java.awt.Color;
 public class VisualizzaContattoNumeri extends JFrame {
 
 	private JPanel contentPane;
-	Controller con;
-	GestioneVisibilitaGUI c;
-	DefaultListModel<NumeroTelefonoFisso> nfModel = new DefaultListModel<>();
-	DefaultListModel<NumeroTelefonoMobile> nmModel = new DefaultListModel<>();
-	ArrayList<NumeroTelefonoFisso> numerifissi= new ArrayList<>();
-	ArrayList<NumeroTelefonoMobile> numerimobili= new ArrayList<>();
+	private Controller con;
+	private GestioneVisibilitaGUI c;
+	private DefaultListModel<NumeroTelefonoFisso> nfModel = new DefaultListModel<>();
+	private DefaultListModel<NumeroTelefonoMobile> nmModel = new DefaultListModel<>();
+	private ArrayList<NumeroTelefonoFisso> numerifissi= new ArrayList<>();
+	private ArrayList<NumeroTelefonoMobile> numerimobili= new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
@@ -73,22 +74,42 @@ public class VisualizzaContattoNumeri extends JFrame {
 		JButton btnNewButton_1 = new JButton("Modifica");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				NumeroTelefonoMobile n = numerimobili.get(list_1.getSelectedIndex());
+				c.tryModificaNumeroMobile(n, coin);
 			}
 		});
 		
 		JButton btnNewButton_2 = new JButton("Elimina");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(nmModel.size() <= 1)
+				{
+					JOptionPane.showMessageDialog(null, "Deve esistere almeno un numero, impossibile cancellare");
+				}
+				else
+				{
+					int x;
+					nmModel.remove(x = list_1.getSelectedIndex());
+					numerimobili.remove(x);
+				}
+			}
+		});
 		btnNewButton_2.setForeground(Color.BLACK);
 		btnNewButton_2.setBackground(Color.RED);
 		
 		JButton btnNewButton_3 = new JButton("Aggiungi");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.tryAggiungiNumeroTelefonoFisso(coin, "F");
+				c.tryAggiungiNumeroTelefono(coin, "F");
 			}
 		});
 		
 		JButton btnNewButton_4 = new JButton("Aggiungi");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryAggiungiNumeroTelefono(coin, "M");
+			}
+		});
 		
 		JButton btnNewButton_5 = new JButton("Modifica");
 		btnNewButton_5.addActionListener(new ActionListener() {
@@ -101,9 +122,16 @@ public class VisualizzaContattoNumeri extends JFrame {
 		JButton btnNewButton_6 = new JButton("Elimina");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int x;
-				nfModel.remove(x = list.getSelectedIndex());
-				numerifissi.remove(x);
+				if(nfModel.size() <= 1)
+				{
+					JOptionPane.showMessageDialog(null, "Deve esistere almeno un numero, impossibile cancellare");
+				}
+				else
+				{
+					int x;
+					nfModel.remove(x = list.getSelectedIndex());
+					numerifissi.remove(x);
+				}
 			}
 		});
 		btnNewButton_6.setBackground(Color.RED);

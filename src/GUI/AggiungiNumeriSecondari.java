@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import Controller.Controller;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -51,19 +52,30 @@ public class AggiungiNumeriSecondari extends JFrame {
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBox.getSelectedItem().equals("F"))
+				if(con.isNumeric(textField.getText()) == true)
 				{
-					c.AggiuntaNumeroSecondario("F", textField.getText());
+					if(comboBox.getSelectedItem().equals("F"))
+					{
+						c.AggiuntaNumeroSecondario("F", textField.getText());
+					}
+					else
+					{
+						c.AggiuntaNumeroSecondario("M", textField.getText());
+					}
 				}
 				else
 				{
-					c.AggiuntaNumeroSecondario("M", textField.getText());
+					JOptionPane.showMessageDialog(null, "Caratteri non validi per un numero telefonico");
 				}
-				
 			}
 		});
 		
 		JButton btnNewButton_1 = new JButton("Annulla");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryIndietroAggiungiNumeriSecondari();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

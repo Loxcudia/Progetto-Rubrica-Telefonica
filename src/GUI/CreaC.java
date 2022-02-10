@@ -7,11 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Classi.AccountMessaggistica;
 import Controller.Controller;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
@@ -30,8 +32,8 @@ public class CreaC extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	GestioneVisibilitaGUI c;
-	Controller con;
+	private GestioneVisibilitaGUI c;
+	private Controller con;
 	/**
 	 * Create the frame.
 	 */
@@ -88,15 +90,29 @@ public class CreaC extends JFrame {
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<String> ns = new ArrayList<>();
-				ns = c.getNumeriSecondari();
-				int x = Integer.parseInt(textField_2.getText());
-				con.addContatto(textField.getText(), textField_1.getText(), x, comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), ns);
-				c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());
+				if(con.isNumeric(textField_5.getText()) == true && con.isNumeric(textField_6.getText()))
+				{
+					ArrayList<String> ns = new ArrayList<>();
+					ArrayList<AccountMessaggistica> am = new ArrayList<>();
+					ns = c.getNumeriSecondari();
+					am = c.getAccountm();
+					int x = Integer.parseInt(textField_2.getText());
+					con.addContatto(textField.getText(), textField_1.getText(), x, comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), ns, am);
+					c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Caratteri non validi per un numero telefonico");
+				}
 			}
 		});
 		
 		JButton btnNewButton_1 = new JButton("Aggiungi Account Messaggistica");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryAggiungiAccountMessaggistica();
+			}
+		});
 		
 		JButton btnNewButton_2 = new JButton("Aggiungi Numeri Secondari");
 		btnNewButton_2.addActionListener(new ActionListener() {

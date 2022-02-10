@@ -2,6 +2,7 @@ package GUI;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
+import Classi.AccountMessaggistica;
 import Classi.Contatto;
 import Classi.DBConnection;
 import Classi.NumeroTelefonoFisso;
@@ -16,6 +17,7 @@ public class GestioneVisibilitaGUI {
 	private String numero;
 	private String nome, numeroF,numeroC; 
 	private ArrayList<String> numeriSecondari = new ArrayList<>();
+	private ArrayList<AccountMessaggistica> accountm = new ArrayList<>();
 	private boolean con;
 	private boolean cre;
 	private LoginFrame i;
@@ -28,6 +30,9 @@ public class GestioneVisibilitaGUI {
 	private AggiungiNumeriSecondari ans;
 	private ModificaNumeroTelefono mnf;
 	private AggiungiNumeroTelefono anf;
+	private AggiungiAccountMessaggistica aam;
+	private VisualizzaContattoAccountMessaggistica vcam;
+	private AggiungiAccountMessaggistica2 aam2;
 	//metodi:
 	public GestioneVisibilitaGUI(LoginFrame in, Controller cin) {
 		i = in;
@@ -41,10 +46,11 @@ public class GestioneVisibilitaGUI {
 		numero = num;
 		if(!((nickname.isEmpty()) || (numero.isBlank())))
 		{
-		m = new Menu(this);
-		i.setVisible(false);
-		m.setVisible(true);
-	}}
+			m = new Menu(this);
+			i.setVisible(false);
+			m.setVisible(true);
+		}
+	}
 	public void contattiOrGruppi(boolean x, boolean y)
 	{
 		con = x;
@@ -152,13 +158,19 @@ public class GestioneVisibilitaGUI {
 		mnf = new ModificaNumeroTelefono (this, this.c, in, null, conin);
 		mnf.setVisible(true);
 	}
-	public void tryIndietroModificaNumeroFisso(Contatto conin)
+	public void tryModificaNumeroMobile(NumeroTelefonoMobile in, Contatto conin)
+	{
+		vcm.setVisible(false);
+		mnf = new ModificaNumeroTelefono (this, this.c, null, in, conin);
+		mnf.setVisible(true);
+	}
+	public void tryIndietroModificaNumero(Contatto conin)
 	{
 		mnf.setVisible(false);
 		vcm = new VisualizzaContattoNumeri(this.c, this, conin);
 		vcm.setVisible(true);
 	}
-	public void tryAggiungiNumeroTelefonoFisso(Contatto conin, String scelta)
+	public void tryAggiungiNumeroTelefono(Contatto conin, String scelta)
 	{
 		vcm.setVisible(false);
 		anf = new AggiungiNumeroTelefono(this, this.c, scelta, conin);
@@ -169,6 +181,41 @@ public class GestioneVisibilitaGUI {
 		anf.setVisible(true);
 		vcm = new VisualizzaContattoNumeri(this.c, this, conin);
 		vcm.setVisible(true);
+	}
+	public void tryIndietroAggiungiNumeriSecondari()
+	{
+		ans.setVisible(false);
+		ci.setVisible(true);
+	}
+	public void tryAggiungiAccountMessaggistica()
+	{
+		ci.setVisible(false);
+		aam = new AggiungiAccountMessaggistica(this, this.c);
+		aam.setVisible(true);
+	}
+	public void tryIndietroAggiungiAccountMessaggistica(AccountMessaggistica in)
+	{
+		aam.setVisible(false);
+		accountm.add(in);
+		ci.setVisible(true);
+	}
+	public void tryVisualizzaContattoAccountMessaggistica(Contatto coin)
+	{
+		sc.setVisible(false);
+		vcam = new VisualizzaContattoAccountMessaggistica(this, this.c, coin);
+		vcam.setVisible(true);
+	}
+	public void tryAggiungiAccountMessaggistica2(Contatto coin)
+	{
+		vcam.setVisible(false);
+		aam2 = new AggiungiAccountMessaggistica2(this, this.c, coin);
+		aam2.setVisible(true);
+	}
+	public void tryIndietroAggiungiAccountMessaggistica2(Contatto coin)
+	{
+		aam2.setVisible(false);
+		vcam = new VisualizzaContattoAccountMessaggistica(this, this.c, coin);
+		vcam.setVisible(true);
 	}
 	public String getNickname() {
 		return nickname;
@@ -194,6 +241,12 @@ public class GestioneVisibilitaGUI {
 	}
 	public void setNumeriSecondari(ArrayList<String> numeriSecondari) {
 		this.numeriSecondari = numeriSecondari;
+	}
+	public ArrayList<AccountMessaggistica> getAccountm() {
+		return accountm;
+	}
+	public void setAccountm(ArrayList<AccountMessaggistica> accountm) {
+		this.accountm = accountm;
 	}
 	
 }

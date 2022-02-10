@@ -5,6 +5,7 @@ package Classi;
  */
 public class AccountMessaggistica {
 	
+	private String nickname;
 	/**Fornitore: Il fornitore è la piattaforma sulla quale è salvatoL'account di messaggistica (es: whatsapp)*/
 	private String fornitore;
 	
@@ -26,8 +27,9 @@ public class AccountMessaggistica {
 	 * @param co è il paramentro inserito dall'utente e si riferisce al contatto selezionato
 	 */
 	//metodi:
-	public AccountMessaggistica(String fo, String em, String fb, Contatto co)
+	public AccountMessaggistica(String nick, String fo, String em, String fb, Contatto co)
 	{
+		this.nickname= nick;
 		this.fornitore= fo;
 		this.email= em;
 		this.frase_benvenuto= fb;
@@ -104,5 +106,18 @@ public class AccountMessaggistica {
 	 */
 	public void setC(Contatto c) {
 		this.c = c;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	@Override
+	public String toString()
+	{
+		return nickname + " " + fornitore;
 	}
 }

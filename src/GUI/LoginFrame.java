@@ -12,6 +12,7 @@ import Controller.Controller;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -57,7 +58,14 @@ public class LoginFrame extends JFrame {
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.tryLogin(textField.getText(), textField_1.getText());
+				if(con.isNumeric(textField_1.getText()) == true)
+				{
+					c.tryLogin(textField.getText(), textField_1.getText());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Caratteri non validi per un numero telefonico");
+				}
 			}
 		});
 		
