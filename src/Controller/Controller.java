@@ -6,6 +6,7 @@ package Controller;
 import Classi.Rubrica;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import Classi.AccountMessaggistica;
 import Classi.Contatto;
@@ -151,7 +152,66 @@ public class Controller {
 			}
 		}
 	}
-	public static boolean isNumeric(String str) { 
+	public ArrayList<Contatto> ricercaPer(String scelta, ArrayList<Contatto> in, String search)
+	{
+		ArrayList<Contatto> c = new ArrayList<>();
+		
+		switch(scelta)
+		{
+			case "Nome":
+				for(int i = 0; i < in.size(); i++)
+				{
+					if(search == in.get(i).getNome())
+					{
+						c.add(in.get(i));
+					}
+				}
+				break;
+			case "Email":
+				for(int i = 0; i < in.size(); i++)
+				{
+					if(search == in.get(i).getEmail())
+					{
+						c.add(in.get(i));
+					}
+				}
+				break;
+			case "Account di messaggistica":
+				for(int i = 0; i < in.size(); i++)
+				{
+					for(int j = 0; j < in.get(i).getAccountm().size(); j++)
+					{
+						if(search == in.get(i).getAccountm().get(i).getNickname())
+						{
+							c.add(in.get(i));
+						}
+					}
+				}
+				break;
+			case "Numero di telefono":
+				for(int i = 0; i < in.size(); i++)
+				{
+					for(int j = 0; j < in.get(i).getNumeritelefonicif().size(); j++)
+					{
+						if(search == in.get(i).getNumeritelefonicif().get(i).getNumero())
+						{
+							c.add(in.get(i));
+						}
+					}
+					for(int j = 0; j < in.get(i).getNumeritelefonicim().size(); j++)
+					{
+						if(search == in.get(i).getNumeritelefonicim().get(i).getNumero())
+						{
+							c.add(in.get(i));
+						}
+					}
+				}
+		}
+		/*LinkedHashSet<Contatto> hashSet = new LinkedHashSet<>(c);
+		ArrayList<Contatto> noDuplicati = new ArrayList<>(hashSet);*/
+		return c;
+	}
+	public boolean isNumeric(String str) { 
 		  try {  
 		    Double.parseDouble(str);  
 		    return true;

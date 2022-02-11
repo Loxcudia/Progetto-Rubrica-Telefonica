@@ -74,6 +74,11 @@ public class AggiungiAccountMessaggistica2 extends JFrame {
 		});
 		
 		JButton btnNewButton_1 = new JButton("Annulla");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryAnnullaAggiungiAccountMessaggistica2();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

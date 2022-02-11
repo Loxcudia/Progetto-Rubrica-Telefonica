@@ -17,6 +17,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
@@ -59,6 +60,12 @@ public class VisualizzaContattoAccountMessaggistica extends JFrame {
 		});
 		
 		JButton btnNewButton_1 = new JButton("Modifica");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccountMessaggistica a = accountmess.get(list.getSelectedIndex());
+				c.tryModificaAccountMessaggistica(a);
+			}
+		});
 		
 		JButton btnNewButton_2 = new JButton("Elimina");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -70,38 +77,60 @@ public class VisualizzaContattoAccountMessaggistica extends JFrame {
 		});
 		btnNewButton_2.setBackground(Color.RED);
 		
+		JButton btnNewButton_3 = new JButton("Indietro");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryIndietroVisualizzaContattoAccountMessaggistica();
+			}
+		});
+		
+		JButton btnNewButton_4 = new JButton("Visualizza Info");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccountMessaggistica n = accountmess.get(list.getSelectedIndex());
+				JOptionPane.showMessageDialog(null, n.getInfo());
+			}
+		});
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(113)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(133))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(list, GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+					.addComponent(list, GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
 					.addContainerGap())
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(56)
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 64, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE)
-					.addGap(226))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(38)
+							.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 83, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 65, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(24)
+							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)))
+					.addGap(133))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblNewLabel)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel)
+						.addComponent(btnNewButton_3))
 					.addGap(14)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
+						.addComponent(btnNewButton_2)
 						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton_2))
+						.addComponent(btnNewButton)
+						.addComponent(btnNewButton_4))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(list)
-					.addContainerGap(243, Short.MAX_VALUE))
+					.addContainerGap(234, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

@@ -25,12 +25,16 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class SchermataContatti extends JFrame {
 
@@ -40,14 +44,16 @@ public class SchermataContatti extends JFrame {
 	private String nomeContatto = "";
 	private DefaultListModel<Contatto> contattiModel = new DefaultListModel<>();
 	private ArrayList<Contatto> contatti = new ArrayList<>();
+	private JTextField textField;
 	/**
 	 * Create the frame.
 	 */
-	public SchermataContatti(GestioneVisibilitaGUI in, Controller cin) {
+	public SchermataContatti(GestioneVisibilitaGUI in, Controller cin, boolean isCresc) {
 		c = in;
 		con = cin;
+		contatti = con.getRubricaContatti();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 749, 604);
+		setBounds(100, 100, 885, 660);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,7 +74,25 @@ public class SchermataContatti extends JFrame {
 		JList<Contatto> list = new JList<>();
 		
 
-		contatti = con.getRubricaContatti();
+		
+		if(isCresc == true)
+		{
+			Collections.sort(contatti, new Comparator<Contatto>() {
+				   @Override
+				   public int compare(Contatto o1, Contatto o2) {
+				      return o1.getNome().compareTo(o2.getNome());
+				   }
+				});
+		}
+		else
+		{
+			Collections.sort(contatti, new Comparator<Contatto>() {
+				   @Override
+				   public int compare(Contatto o1, Contatto o2) {
+				      return o2.getNome().compareTo(o1.getNome());
+				   }
+				});
+		}
 		contattiModel.addAll(contatti);
 		list.setModel(contattiModel);
 		contentPane.add(list, BorderLayout.NORTH);
@@ -125,34 +149,82 @@ public class SchermataContatti extends JFrame {
 			}
 		});
 		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Per:");
+		String[] x = {"Nome", "Email", "Account di messaggistica", "Numero di telefono"};
+		JComboBox comboBox = new JComboBox(x);
+		
+		JButton btnNewButton_7 = new JButton("Cerca");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Contatto> ricerca = new ArrayList<Contatto>();
+				if(comboBox.getSelectedItem().equals("Nome"))
+				{
+					ricerca = con.ricercaPer("Nome", contatti, textField.getText());
+					contattiModel.clear();
+					contattiModel.addAll(ricerca);
+				}
+				if(comboBox.getSelectedItem().equals("Email"))
+				{
+					ricerca = con.ricercaPer("Email", contatti, textField.getText());
+					contattiModel.clear();
+					contattiModel.addAll(ricerca);
+				}
+				if(comboBox.getSelectedItem().equals("Account di messaggistica"))
+				{
+					ricerca = con.ricercaPer("Account di messaggistica", contatti, textField.getText());
+					contattiModel.clear();
+					contattiModel.addAll(ricerca);
+				}
+				if(comboBox.getSelectedItem().equals("Numero di telefono"))
+				{
+					ricerca = con.ricercaPer("Numero di telefono", contatti, textField.getText());
+					contattiModel.clear();
+					contattiModel.addAll(ricerca);
+				}
+			}
+		});
+		
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(list, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-							.addGap(97))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(78)
-							.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)))
-					.addComponent(btnNewButton_5, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+					.addGap(82)
+					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_6, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+					.addComponent(btnNewButton_5, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNewButton_6, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
 					.addGap(40))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(187)
-					.addComponent(lblNewLabel)
-					.addGap(258)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-						.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+							.addGap(187)
+							.addComponent(lblNewLabel)
+							.addGap(317))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnNewButton_7, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(247)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton_2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+						.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(list, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+					.addGap(528))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -161,13 +233,21 @@ public class SchermataContatti extends JFrame {
 						.addComponent(btnNewButton)
 						.addComponent(lblNewLabel)
 						.addComponent(btnNewButton_4))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_3)
-					.addGap(35)
-					.addComponent(list)
-					.addGap(26)
-					.addComponent(btnNewButton_2)
-					.addPreferredGap(ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnNewButton_3)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnNewButton_2))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnNewButton_7)
+								.addComponent(lblNewLabel_2)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+							.addComponent(list)))
+					.addGap(480)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_6)
 						.addComponent(btnNewButton_5)

@@ -118,6 +118,10 @@ public class AccountMessaggistica {
 	@Override
 	public String toString()
 	{
-		return nickname + " " + fornitore;
+		return "Nick: " + nickname + " Fornitore: " + fornitore;
+	}
+	public String getInfo()
+	{
+		return "Nick: " + nickname + ", Fornitore: " + fornitore + ", Email: " + email + ", Frase di Benvenuto: " + frase_benvenuto;
 	}
 }

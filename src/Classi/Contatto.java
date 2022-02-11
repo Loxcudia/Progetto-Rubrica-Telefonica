@@ -300,6 +300,6 @@ public class Contatto {
 	 */
 	public String getInfo()
 	{
-		return nome + ", " + cognome + ", " + email + ", " + età + ", " + sesso + ", " + residenza + ".";
+		return "Nome: " + nome + ", Cognome: " + cognome + ", Email: " + email + ", Età: " + età + ", Sesso: " + sesso + ", Residenza: " + residenza + ".";
 	}
 }

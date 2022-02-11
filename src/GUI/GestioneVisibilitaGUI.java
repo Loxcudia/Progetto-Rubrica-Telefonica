@@ -19,7 +19,7 @@ public class GestioneVisibilitaGUI {
 	private ArrayList<String> numeriSecondari = new ArrayList<>();
 	private ArrayList<AccountMessaggistica> accountm = new ArrayList<>();
 	private boolean con;
-	private boolean cre;
+	private boolean cre = true;
 	private LoginFrame i;
 	private Menu m;
 	private SchermataContatti sc;
@@ -33,6 +33,7 @@ public class GestioneVisibilitaGUI {
 	private AggiungiAccountMessaggistica aam;
 	private VisualizzaContattoAccountMessaggistica vcam;
 	private AggiungiAccountMessaggistica2 aam2;
+	private ModificaAccountMessaggistica mam;
 	//metodi:
 	public GestioneVisibilitaGUI(LoginFrame in, Controller cin) {
 		i = in;
@@ -60,20 +61,32 @@ public class GestioneVisibilitaGUI {
 			if(cre == true)
 			{
 				r = c.getRubricaOrdinataCresc();
+				sc = new SchermataContatti(this, this.c, true);
+				m.setVisible(false);
+				sc.setVisible(true);
 			}
 			else
 			{
 				r = c.getRubricaOrdinataDesc();
+				sc = new SchermataContatti(this, this.c, false);
+				m.setVisible(false);
+				sc.setVisible(true);
 			}
-			sc = new SchermataContatti(this, this.c);
-			m.setVisible(false);
-			sc.setVisible(true);
 		}
 		else
 		{
-			sg = new SchermataGruppi(this);
-			m.setVisible(false);
-			sg.setVisible(true);
+			if(cre == true)
+			{
+				sg = new SchermataGruppi(this);
+				m.setVisible(false);
+				sg.setVisible(true);
+			}
+			else
+			{
+				sg = new SchermataGruppi(this);
+				m.setVisible(false);
+				sg.setVisible(true);
+			}
 		}
 	}
 	public void tryCreaC()
@@ -87,7 +100,7 @@ public class GestioneVisibilitaGUI {
 		if ((((!nome.isBlank())||(!cognome.isBlank()))&&(!numf.isBlank())&&(!numc.isBlank())))
 		{
 			ci.setVisible(false);
-			sc = new SchermataContatti(this, this.c);
+			sc = new SchermataContatti(this, this.c, cre);
 			sc.setVisible(true);
 		}
 	}
@@ -100,7 +113,7 @@ public class GestioneVisibilitaGUI {
 	public void tryModificaContatto2()
 	{
 		mc.setVisible(false);
-		sc= new SchermataContatti(this, this.c);
+		sc= new SchermataContatti(this, this.c, cre);
 		sc.setVisible(true);
 	}
 	public void tryVisualizzaNumeri(Contatto in)
@@ -124,19 +137,19 @@ public class GestioneVisibilitaGUI {
 	public void tryIndietroCreaC()
 	{
 		ci.setVisible(false);
-		sc= new SchermataContatti(this, this.c);
+		sc= new SchermataContatti(this, this.c, cre);
 		sc.setVisible(true);
 	}
 	public void tryIndietroModificaContatto()
 	{
 		mc.setVisible(false);
-		sc = new SchermataContatti(this, this.c);
+		sc = new SchermataContatti(this, this.c, cre);
 		sc.setVisible(true);
 	}
 	public void tryIndietroVisualizzaContattoNumeri()
 	{
 		vcm.setVisible(false);
-		sc= new SchermataContatti(this, this.c);
+		sc= new SchermataContatti(this, this.c, cre);
 		sc.setVisible(true);
 	}
 	public void tryAggiungiNumeriSecondari()
@@ -215,6 +228,39 @@ public class GestioneVisibilitaGUI {
 	{
 		aam2.setVisible(false);
 		vcam = new VisualizzaContattoAccountMessaggistica(this, this.c, coin);
+		vcam.setVisible(true);
+	}
+	public void tryIndietroVisualizzaContattoAccountMessaggistica()
+	{
+		vcam.setVisible(false);
+		sc = new SchermataContatti(this, this.c, cre);
+		sc.setVisible(true);
+	}
+	public void tryAnnullaAggiungiAccountMessaggistica()
+	{
+		aam.setVisible(false);
+		ci.setVisible(true);
+	}
+	public void tryModificaAccountMessaggistica(AccountMessaggistica in)
+	{
+		vcam.setVisible(false);
+		mam = new ModificaAccountMessaggistica(this, this.c, in);
+		mam.setVisible(true);
+	}
+	public void tryOKModificaAccountMessaggistica(Contatto coin)
+	{
+		mam.setVisible(false);
+		vcam = new VisualizzaContattoAccountMessaggistica(this, this.c, coin);
+		vcam.setVisible(true);
+	}
+	public void tryAnnullaAggiungiAccountMessaggistica2()
+	{
+		aam2.setVisible(false);
+		vcam.setVisible(true);
+	}
+	public void tryAnnullaModificaAccountMessaggistica()
+	{
+		mam.setVisible(false);
 		vcam.setVisible(true);
 	}
 	public String getNickname() {
