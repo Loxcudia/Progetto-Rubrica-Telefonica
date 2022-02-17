@@ -8,15 +8,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controller.Controller;
+import Model.AccountMessaggistica;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class CreaC extends JFrame {
@@ -29,8 +32,8 @@ public class CreaC extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	GestioneVisibilitaGUI c;
-	Controller con;
+	private GestioneVisibilitaGUI c;
+	private Controller con;
 	/**
 	 * Create the frame.
 	 */
@@ -56,6 +59,7 @@ public class CreaC extends JFrame {
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Et\u00E0:");
+		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		
@@ -82,19 +86,39 @@ public class CreaC extends JFrame {
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-
+		
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int x = Integer.parseInt(textField_2.getText());
-					con.addContatto(textField.getText(), textField_1.getText(), x, comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
-					c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());
+				if(con.isNumeric(textField_5.getText()) == true && con.isNumeric(textField_6.getText()) == true && con.isNumeric(textField_2.getText()) == true)
+				{
+					ArrayList<String> ns = new ArrayList<>();
+					ArrayList<AccountMessaggistica> am = new ArrayList<>();
+					ns = c.getNumeriSecondari();
+					am = c.getAccountm();
+					con.addContatto(textField.getText(), textField_1.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), ns, am);
+					c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());c.creaContatto(textField.getText(), textField_1.getText(), textField_5.getText(), textField_6.getText());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Caratteri non validi");
+				}
 			}
 		});
-
+		
 		JButton btnNewButton_1 = new JButton("Aggiungi Account Messaggistica");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryAggiungiAccountMessaggistica();
+			}
+		});
 		
 		JButton btnNewButton_2 = new JButton("Aggiungi Numeri Secondari");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.tryAggiungiNumeriSecondari();
+			}
+		});
 		
 		JButton btnNewButton_3 = new JButton("Annulla");
 		btnNewButton_3.addActionListener(new ActionListener() {
@@ -207,5 +231,4 @@ public class CreaC extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-} 
-
+}

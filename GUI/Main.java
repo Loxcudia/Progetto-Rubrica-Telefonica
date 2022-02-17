@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import Controller.Controller;
 
 public class Main extends JFrame {
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

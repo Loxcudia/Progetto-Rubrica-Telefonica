@@ -12,6 +12,7 @@ import Controller.Controller;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -27,7 +28,10 @@ public class LoginFrame extends JFrame {
 	Controller con;
 	
 
-		LoginFrame(Controller in)
+	/**
+	 * Create the frame.
+	 */
+	public LoginFrame(Controller in)
 	{
 		con = in;
 		c = new GestioneVisibilitaGUI(this, con);
@@ -50,11 +54,18 @@ public class LoginFrame extends JFrame {
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-
+		
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.tryLogin(textField.getText(), textField_1.getText());
+				if(con.isNumeric(textField_1.getText()) == true && textField.getText().isBlank() == false)
+				{
+					c.tryLogin(textField.getText(), textField_1.getText());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Nickname o numero di telefono non validi");
+				}
 			}
 		});
 		
